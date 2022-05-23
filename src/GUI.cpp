@@ -51,6 +51,18 @@ void GUI::draw_square(const int x, const int y, const int a, const Uint8 r, cons
     SDL_RenderFillRect(renderer, &square);
 }
 
+void GUI::draw_grid(const int box_size, const int width, const int height) {
+    SDL_SetRenderDrawColor(renderer, 240, 240, 240, 255);
+    for (int y = -1; y < height; y += box_size) {
+        SDL_RenderDrawLine(renderer, 0, y, width, y);
+        SDL_RenderDrawLine(renderer, 0, y + 1, width, y + 1);
+    }
+    for (int x = -1; x < width; x += box_size) {
+        SDL_RenderDrawLine(renderer, x, 0, x, height);
+        SDL_RenderDrawLine(renderer, x + 1, 0, x + 1, height);
+    }
+}
+
 void GUI::render_present() {
     SDL_RenderPresent(renderer);
 }

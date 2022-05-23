@@ -8,7 +8,7 @@
 //#define WINDOW_HEIGHT 400
 #define SPACINGS 2
 #define SQUARE_SIDES_LEN 16
-#define MARGIN 1
+#define MARGIN 10
 #define DELAY_MS 200
 
 

@@ -23,6 +23,7 @@ void InputReader::clear() {
     }
 
     gui->clear();
+    gui->draw_grid(box_size, gui->win_w, gui->win_h);
     gui->render_present();
 }
 
