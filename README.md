@@ -20,3 +20,9 @@ make all
 To quit the program press windows title bar X button
 
 ## Examples
+
+### Example 1
+![Example 1](./gifs/example1.gif)
+
+### Example 2 - [Gosper glider gun](https://en.wikipedia.org/wiki/Gun_(cellular_automaton))
+![Example 1](./gifs/example2.gif)
