@@ -4,16 +4,14 @@
 
 #include "InputReader.h"
 
-InputReader::InputReader(GUI *gui, const int sides, const int spacings) :
+InputReader::InputReader(GUI * const gui, const int sides, const int spacings) :
         gui{gui}, square_sides_len{sides}, spacings{spacings}, box_size{sides + 2 * spacings},
         rows{gui->win_h / (sides + 2 * spacings)}, cols{gui->win_w / (sides + 2 * spacings)} {
     init();
 }
 
 void InputReader::init() {
-    std::cout << "InputReader init:\n";
-    std::cout << rows << "\n";
-    std::cout << cols << "\n";
+    std::cout << "InputReader init: rows=" << rows << ", cols=" << cols << "\n";
 
     board.resize(rows, std::vector<bool>(cols));
     clear();
@@ -29,14 +27,19 @@ void InputReader::clear() {
 }
 
 void InputReader::mouse_click(const Sint32 x, const Sint32 y) {
-    std::cout << "x=" << x << "  y=" << y << "\n";
+    std::cout << "Mouse click: x=" << x << ", y=" << y << "\n";
 
     int row = y / box_size;
     int col = x / box_size;
 
     if (row >= 0 && row < rows && col >= 0 && col < cols) {
         board[row][col] = !board[row][col];
-        gui->draw_square(col * box_size + spacings, row * box_size + spacings,square_sides_len);
+        if (board[row][col]) {
+            gui->draw_square(col * box_size + spacings, row * box_size + spacings, square_sides_len, 0, 0, 0);
+        }
+        else {
+            gui->draw_square(col * box_size + spacings, row * box_size + spacings, square_sides_len, 255, 255, 255);
+        }
         gui->render_present();
     }
 }
@@ -45,7 +48,7 @@ bool InputReader::read() {
     SDL_Event event;
 
     while (true) {
-        while (SDL_PollEvent(&event)) {
+        while (SDL_WaitEvent(&event)) {
             switch (event.type) {
                 case SDL_QUIT:
                     return false;
@@ -57,11 +60,11 @@ bool InputReader::read() {
                             return true;
 
                         case SDL_SCANCODE_ESCAPE:
-                            std::cout << "resetowanie stanu boarda\n";
+                            clear();
                             break;
 
                         default:
-                            print();
+                            //print();
                             break;
                     }
                     break;
@@ -82,7 +85,3 @@ void InputReader::print() {
         std::cout << "\n";
     }
 }
-
-
-
-

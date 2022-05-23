@@ -9,6 +9,7 @@
 #include "GUI.h"
 
 class InputReader {
+    friend class Game;
 
 public:
     InputReader(GUI *gui, int sides, int spacings);
@@ -16,7 +17,7 @@ public:
     bool read();
 
 private:
-    GUI *gui;
+    GUI *const gui;
     const int square_sides_len;
     const int spacings;
     const int box_size;
@@ -26,9 +27,12 @@ private:
     std::vector<std::vector<bool>> board;
 
     void init();
+
     void clear();
-    void print();
+
     void mouse_click(Sint32 x, Sint32 y);
+
+    void print();
 };
 
 

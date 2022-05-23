@@ -45,8 +45,8 @@ void GUI::clear() {
     SDL_RenderClear(renderer);
 }
 
-void GUI::draw_square(const int x, const int y, const int a) {
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+void GUI::draw_square(const int x, const int y, const int a, const Uint8 r, const Uint8 g, const Uint8 b) {
+    SDL_SetRenderDrawColor(renderer, r, g, b, 255);
     SDL_Rect square = {x, y, a, a};
     SDL_RenderFillRect(renderer, &square);
 }

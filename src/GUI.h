@@ -18,7 +18,7 @@ public:
     ~GUI();
 
     void clear();
-    void draw_square(int x, int y, int a);
+    void draw_square(int x, int y, int a, Uint8 r, Uint8 g, Uint8 b);
     void render_present();
 
 private:
